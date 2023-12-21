@@ -22,6 +22,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
+import androidx.emoji2.bundled.BundledEmojiCompatConfig;
+import androidx.emoji2.text.EmojiCompat;
 import androidx.multidex.MultiDexApplication;
 
 import com.bumptech.glide.Glide;
@@ -147,6 +149,8 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     }
 
     super.onCreate();
+
+    EmojiCompat.init(new BundledEmojiCompatConfig(this));
 
     AppStartup.getInstance().addBlocking("sqlcipher-init", () -> {
                               SqlCipherLibraryLoader.load();
